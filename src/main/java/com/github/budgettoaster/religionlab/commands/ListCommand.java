@@ -46,6 +46,10 @@ public class ListCommand extends SubCommand {
         for(Religion r : Religion.getReligions())
             religions.add(r);
         int maxPages = (int)Math.ceil((double) religions.size() / numPerPage);
+        if(maxPages == 0) {
+            sender.sendMessage(ChatColor.YELLOW + "There are no religions yet.");
+            return true;
+        }
         if(page > maxPages) {
             sender.sendMessage(ChatColor.RED + "Max page is " + maxPages);
             return true;

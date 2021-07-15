@@ -7,6 +7,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 
 import java.text.MessageFormat;
+import java.util.Collections;
 import java.util.List;
 
 public class PerkListCommand extends SubCommand {
@@ -16,7 +17,8 @@ public class PerkListCommand extends SubCommand {
                 "perks",
                 "/religion perks [founder|follower]",
                 "religion.basic.perks",
-                "Shows the sender a list of perks."
+                "Shows the sender a list of perks.",
+                List.of("beliefs")
         );
     }
 

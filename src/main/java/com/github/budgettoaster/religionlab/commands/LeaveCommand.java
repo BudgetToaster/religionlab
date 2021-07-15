@@ -33,8 +33,9 @@ public class LeaveCommand extends SubCommand {
             return true;
         }
 
-        if(old.getFounder().equals(sender) && founderCanLeave) {
-            sender.sendMessage(ChatColor.RED + "The founder cannot leave!");
+        if(old.getFounder().equals(sender) && !founderCanLeave) {
+            sender.sendMessage(ChatColor.RED + "The founder of a religion cannot leave!");
+            return true;
         }
 
         Religion.setReligion((OfflinePlayer) sender, null);
@@ -44,6 +45,7 @@ public class LeaveCommand extends SubCommand {
             Player founder = old.getFounder().getPlayer();
             if(founder != null) {
                 founder.sendMessage(ChatColor.YELLOW + "Your religion has been forgotten because nobody is following it.");
+                old.unregister();
             }
         }
 

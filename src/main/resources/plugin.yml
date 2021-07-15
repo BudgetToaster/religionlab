@@ -56,6 +56,8 @@ permissions:
   religionlab.basic.info.other:
     description: Allows the player to see info of other religions.
     default: not op
+    children:
+      - religionlab.basic.info
   religionlab.basic.enhance:
     description: Allows a player to enhance their religion.
     default: not op

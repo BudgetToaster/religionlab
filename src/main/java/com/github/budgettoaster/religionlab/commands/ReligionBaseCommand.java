@@ -44,7 +44,7 @@ public class ReligionBaseCommand implements CommandExecutor {
         List<String> otherArgs = Arrays.asList(args).subList(1, args.length);
 
         for(SubCommand subCommand : subCommands) {
-            if(!secondaryCommand.equals(subCommand.getLabel()))
+            if(!secondaryCommand.equals(subCommand.getLabel()) && !subCommand.getAliases().contains(secondaryCommand))
                 continue;
 
             if(subCommand.getPermission() != null && !sender.hasPermission(subCommand.getPermission()))

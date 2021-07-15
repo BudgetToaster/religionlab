@@ -94,6 +94,12 @@ public class Religion {
                 religionFollowers.put(player, r);
             }
         }
+
+        for(Map.Entry<OfflinePlayer, Religion> entry : religionFollowers.entrySet()) {
+            if(!numFollowers.containsKey(entry.getValue()))
+                numFollowers.put(entry.getValue(), 0);
+            numFollowers.put(entry.getValue(), numFollowers.get(entry.getValue()) + 1);
+        }
     }
 
 
@@ -112,7 +118,7 @@ public class Religion {
 
     public int getNumFollowers() {
         Integer num = numFollowers.get(this);
-        return num == null ? 0 : 1;
+        return num == null ? 0 : num;
     }
 
     public Perk getFounderPerk() {
@@ -137,6 +143,14 @@ public class Religion {
 
     public void unregister() {
         religions.remove(this);
+        numFollowers.remove(this);
+        ArrayList<OfflinePlayer> toRemove = new ArrayList<>();
+        for(Map.Entry<OfflinePlayer, Religion> entry : religionFollowers.entrySet()) {
+            if(entry.getValue() == this)
+                toRemove.add(entry.getKey());
+        }
+        for(OfflinePlayer p : toRemove)
+            religionFollowers.remove(p);
     }
 
     public String getName() {
