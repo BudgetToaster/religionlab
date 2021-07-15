@@ -1,0 +1,51 @@
+name: ReligionLab
+version: 1.0-SNAPSHOT
+main: dev.xanhub.religionlab.ReligionLab
+api-version: 1.17
+authors: [BudgetToaster]
+description: Allows players to make religions that give passive buffs to their followers.
+
+commands:
+  religion:
+    description: Religion main command
+    usage: /religion <command>
+  religion create:
+    description: Creates a new religion
+    usage: /religion create [Founder Perk] [Name]
+  religion createtext:
+    description: Creates an ancient text that can be used to found or expand a religion.
+    usage: /religion createtext
+permissions:
+  religionlab.*:
+    description: Access to all (including admin) religion commands
+    default: op
+    children:
+      - religionlab.admin.*
+      - religionlab.basic.*
+  religionlab.admin.*:
+    description: Access to all admin commands.
+    default: op
+    children:
+      - religionlab.admin.createtext
+  religionlab.admin.createtext:
+    description: Allows a player to create an ancient text
+    default: op
+  religionlab.basic.*:
+    description: Access to all basic (non-admin) commands.
+    default: not op
+    children:
+      - religionlab.basic.create
+  religionlab.basic.create:
+    description: Allows player to create a religion.
+    default: not op
+    children:
+      - religionlab.basic.perks
+  religionlab.basic.perks:
+    description: Allows the player to see a list of perks.
+    default: not op
+  religionlab.basic.info:
+    description: Allows the player to see religion info.
+    default: not op
+  religionlab.basic.enhance:
+    description: Allows a player to enhance their religion.
+    default: not op

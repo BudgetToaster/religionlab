@@ -1,0 +1,169 @@
+# EQUATION INFO (For advanced-ish users)
+#
+# Most perks allow you to specify a custom equation for perk bonuses.
+# This is optional, and to use the default, linear equation, set the equation to 'none'.
+#
+# If the equation is 'none', the default equation will be made using the
+# min, max, and 'increase per follower' options.
+#
+# If you do want to set the equation yourself, use 'x' as a variable for the number of followers in the relevant religion.
+#
+# This plugin uses EvalEx (https://github.com/uklimaschewski/EvalEx) for parsing equations,
+# but you do not need to know how it works.
+#
+# All supported functions, constants, operations can be found at:
+# https://github.com/uklimaschewski/EvalEx#supported-operators
+#
+
+
+
+#
+# FOUNDING & ENHANCING SETTINGS
+#
+
+max follower perks per religion: 2
+
+# Probability of ancient text generating in treasure chests, jungle temples, and desert temples.
+# Is a decimal, so 0.5 = 50%, 1 = 100%, 0 = 0%.
+ancient text generation chance: 0.5
+
+# Minimum and maximum years for ancient texts to be written. This does not have any actual affect on gameplay,
+# and is only for aesthetic purposes. AD/CE is positive, and BC/BCE is a negative number.
+max ancient text creation year: 2000
+min ancient text creation year: -2000
+
+# Whether dates should use common era or not. Common era means dates will use BCE/CE, if 'no' will use BC/AD.
+use common era: yes
+
+# Levels needed to use an ancient text to found or enhance a religion.
+levels needed to found: 50
+levels needed to enhance: 30
+
+
+
+#
+# FOLLOWER PERKS
+#
+
+follower perks:
+  fortune:
+    name: fortune
+    enabled: true
+
+    min probability: 0
+    max probability: 1
+    probability increase per follower: 0.01
+
+    probability equation: none
+
+    works on netherite: no
+  strength:
+    name: strength
+    enabled: true
+
+    min bonus damage: 0
+    max bonus damage: 1
+    bonus damage increase per follower: 0.01
+
+    strength equation: none
+  precision:
+    name: precision
+    enabled: true
+
+    min bonus damage: 0
+    max bonus damage: 1
+    bonus damage increase per follower: 0.01
+
+    strength equation: none
+  experience:
+    name: experience
+    enabled: true
+
+    min multiplier: 1
+    max multiplier: 2
+    multiplier increase per follower: 0.01
+
+    multiplier equation: none
+  speed:
+    name: speed
+    enabled: true
+
+    min bonus: 0
+    max bonus: 1
+    bonus increase per follower: 0.01
+
+    bonus equation: none
+  health:
+    name: health
+    enabled: true
+
+    min bonus: 0
+    max bonus: 4
+    bonus increase per follower: 0.04
+
+    bonus equation: none
+
+
+
+#
+# FOUNDER PERKS
+#
+
+founder perks:
+  # Small chance to give one extra ore (similar to the enchantment)
+  fortune:
+    name: fortune
+    enabled: true
+
+    min probability: 0
+    max probability: 1
+    probability increase per follower: 0.01
+
+    probability equation: none
+
+    works on netherite: no
+  strength:
+    name: strength
+    enabled: true
+
+    min bonus damage: 0
+    max bonus damage: 1
+    bonus damage increase per follower: 0.01
+
+    strength equation: none
+  precision:
+    name: precision
+    enabled: true
+
+    min bonus damage: 0
+    max bonus damage: 1
+    bonus damage increase per follower: 0.01
+
+    strength equation: none
+  experience:
+    name: experience
+    enabled: true
+
+    min multiplier: 1
+    max multiplier: 1.1
+    multiplier increase per follower: 0.01
+
+    multiplier equation: none
+  speed:
+    name: speed
+    enabled: true
+
+    min bonus: 0
+    max bonus: 0.1
+    bonus increase per follower: 0.01
+
+    bonus equation: none
+  health:
+    name: health
+    enabled: true
+
+    min bonus: 0
+    max bonus: 2
+    bonus increase per follower: 0.04
+
+    bonus equation: none
