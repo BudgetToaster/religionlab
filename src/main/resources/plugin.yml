@@ -1,6 +1,6 @@
 name: ReligionLab
 version: 1.0-SNAPSHOT
-main: dev.xanhub.religionlab.ReligionLab
+main: com.github.budgettoaster.religionlab.ReligionLab
 api-version: 1.17
 authors: [BudgetToaster]
 description: Allows players to make religions that give passive buffs to their followers.
@@ -35,6 +35,13 @@ permissions:
     default: not op
     children:
       - religionlab.basic.create
+      - religionlab.basic.perks
+      - religionlab.basic.info
+      - religionlab.basic.info.other
+      - religionlab.basic.enhance
+      - religionlab.basic.join
+      - religionlab.basic.leave
+      - religionlab.basic.list
   religionlab.basic.create:
     description: Allows player to create a religion.
     default: not op
@@ -46,6 +53,18 @@ permissions:
   religionlab.basic.info:
     description: Allows the player to see religion info.
     default: not op
+  religionlab.basic.info.other:
+    description: Allows the player to see info of other religions.
+    default: not op
   religionlab.basic.enhance:
     description: Allows a player to enhance their religion.
+    default: not op
+  religionlab.basic.join:
+    description: Allows a player to join a religion
+    default: not op
+  religionlab.basic.leave:
+    description: Allows a player to leave a religion
+    default: not op
+  religionlab.basic.list:
+    description: Allows a player to list religions
     default: not op

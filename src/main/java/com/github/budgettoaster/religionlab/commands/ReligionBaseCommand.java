@@ -25,13 +25,15 @@ public class ReligionBaseCommand implements CommandExecutor {
         subCommands.add(new PerkListCommand());
         subCommands.add(new InfoCommand());
         subCommands.add(new EnhanceCommand());
+        subCommands.add(new JoinCommand());
+        subCommands.add(new LeaveCommand());
+        subCommands.add(new ListCommand());
     }
 
-    public boolean init() {
+    public void init() {
         for(SubCommand c : subCommands) {
-            if(!c.init()) return false;
+            if(!c.init()) return;
         }
-        return true;
     }
 
     @Override

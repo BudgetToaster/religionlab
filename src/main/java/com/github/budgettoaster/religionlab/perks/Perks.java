@@ -1,7 +1,6 @@
 package com.github.budgettoaster.religionlab.perks;
 
 import com.github.budgettoaster.religionlab.ReligionLab;
-import dev.xanhub.religionlab.perks.*;
 import com.github.budgettoaster.religionlab.perks.base.FollowerPerk;
 import com.github.budgettoaster.religionlab.perks.base.FounderPerk;
 import com.github.budgettoaster.religionlab.perks.base.Perk;

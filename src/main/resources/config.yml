@@ -21,6 +21,16 @@
 # FOUNDING & ENHANCING SETTINGS
 #
 
+# List of words/phrases that religion names cannot contain
+banned names:
+#  - bad word here
+
+# Whether a player can only change religions once a day.
+# Prevents players from constantly changing religions to get specific perks
+one join per day: yes
+
+founder can leave: no
+
 max follower perks per religion: 2
 
 # Probability of ancient text generating in treasure chests, jungle temples, and desert temples.

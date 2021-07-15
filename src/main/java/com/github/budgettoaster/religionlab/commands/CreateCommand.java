@@ -12,9 +12,11 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class CreateCommand extends SubCommand {
     private int levelsNeededToFound;
+    private List<String> badWords;
 
     public CreateCommand() {
         super(
@@ -33,6 +35,7 @@ public class CreateCommand extends SubCommand {
             ReligionLab.get().getLogger().severe("Invalid levels needed to found! Make sure your config file is valid!");
             return false;
         }
+        badWords = ReligionLab.get().getConfig().getStringList("banned names");
         return true;
     }
 
@@ -61,6 +64,20 @@ public class CreateCommand extends SubCommand {
             return true;
         }
 
+        for(String word : badWords) {
+            if(name.toLowerCase(Locale.ROOT).contains(word.toLowerCase(Locale.ROOT))) {
+                sender.sendMessage(ChatColor.RED + "Your name contains a bad word!");
+                return true;
+            }
+        }
+
+        for(Religion r : Religion.getReligions()) {
+            if(r.getName().equalsIgnoreCase(name)) {
+                sender.sendMessage(ChatColor.RED + "That name is already in use.");
+                return true;
+            }
+        }
+
         ItemStack ancientText = findAncientText((Player) sender);
         if(ancientText == null)
             sender.sendMessage(ChatColor.RED + "Cannot create a religion without an ancient text.");
@@ -72,6 +89,7 @@ public class CreateCommand extends SubCommand {
             ancientText.setAmount(ancientText.getAmount() - 1);
             ((Player) sender).setLevel(((Player) sender).getLevel() - levelsNeededToFound);
             sender.sendMessage(ChatColor.GOLD + "Religion created!");
+            Religion.setReligion(((Player) sender), religion);
         }
         return true;
     }

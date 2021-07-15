@@ -108,7 +108,6 @@ public class Religion {
         this.founder = founder;
         this.founderPerk = founderPerk;
         this.followerPerks.addAll(followerPerks);
-        Religion.setReligion(founder, this);
     }
 
     public int getNumFollowers() {
@@ -146,17 +145,5 @@ public class Religion {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    private HashMap<String, Object> serialize() {
-        HashMap<String, Object> ret = new HashMap<>();
-        ret.put("name", getName());
-        ret.put("founder", getFounder().getUniqueId().toString());
-        ArrayList<String> followerPerksSer = new ArrayList<>();
-        for(Perk perk : followerPerks)
-            followerPerksSer.add(perk.toString());
-        ret.put("followerPerks", followerPerksSer);
-        ret.put("founderPerk", founderPerk.toString());
-        return ret;
     }
 }

@@ -20,7 +20,7 @@ public class HelpCommand extends SubCommand {
     @Override
     public boolean execute(CommandSender sender, List<String> args) {
         StringBuilder msg = new StringBuilder();
-        msg.append(MessageFormat.format("{0}--------- {1}ReligionLab /relHelp {2}---------", ChatColor.YELLOW, ChatColor.RESET, ChatColor.YELLOW));
+        msg.append(MessageFormat.format("{0}--------- {1}ReligionLab Help {2}---------", ChatColor.YELLOW, ChatColor.RESET, ChatColor.YELLOW));
         for(SubCommand command : ReligionBaseCommand.getSubCommands()) {
             if(command.getPermission() == null || sender.hasPermission(command.getPermission()))
                 msg.append(MessageFormat.format("\n{0}/religion {1}: {2}{3}",

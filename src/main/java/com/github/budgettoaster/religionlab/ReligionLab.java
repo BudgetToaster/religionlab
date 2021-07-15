@@ -3,6 +3,8 @@ package com.github.budgettoaster.religionlab;
 import com.github.budgettoaster.religionlab.perks.Perks;
 import com.github.budgettoaster.religionlab.commands.ReligionBaseCommand;
 import com.github.budgettoaster.religionlab.commands.ReligionLabTabCompleter;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.world.WorldSaveEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.IOException;
@@ -36,16 +38,17 @@ public final class ReligionLab extends JavaPlugin {
             getServer().shutdown();
             return;
         }
-        getServer().getScheduler().scheduleSyncRepeatingTask(this, () -> {
-            try {
-                Religion.save();
-                getLogger().info("Saved religions.");
-            } catch (IOException e) {
-                getLogger().warning("Failed to save religions file.");
-            }
-        }, 100, 200);
 
         getLogger().info("ReligionLab loaded.");
+    }
+
+    @EventHandler
+    public void worldSaveEvent(WorldSaveEvent ev) {
+        try {
+            Religion.save();
+        } catch (IOException e) {
+            getLogger().warning("Failed to save religions file.");
+        }
     }
 
     public AncientTextGenerator getAncientTextGenerator() {

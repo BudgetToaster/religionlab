@@ -2,7 +2,6 @@ package com.github.budgettoaster.religionlab.perks;
 
 import com.github.budgettoaster.religionlab.perks.base.SimplePerk;
 import com.github.budgettoaster.religionlab.Religion;
-import dev.xanhub.religionlab.perks.base.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerExpChangeEvent;

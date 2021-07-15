@@ -5,7 +5,7 @@ plugins {
     id 'java'
 }
 
-group = 'dev.xanhub.religionlab'
+group = 'com.github.budgettoaster.religionlab'
 version = '1.0-SNAPSHOT'
 
 sourceCompatibility = "1.9"
