@@ -69,7 +69,7 @@ public class JoinCommand extends SubCommand {
             if(System.currentTimeMillis() - lastJoin.get(uuid) < 86400000) {
                 if(oneJoinPerDay) {
                     sender.sendMessage(ChatColor.RED + "You can only join a religion once per day.");
-                    //return true;
+                    return true;
                 }
             }
             else {
