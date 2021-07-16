@@ -10,11 +10,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class ReligionLabTabCompleter implements TabCompleter {
-    ArrayList<String> list = new ArrayList<>();
+    final ArrayList<String> list = new ArrayList<>();
 
     public ReligionLabTabCompleter() {
         for(SubCommand command : ReligionBaseCommand.getSubCommands()) {
             list.add(command.getLabel());
+            list.addAll(command.getAliases());
         }
     }
 

@@ -10,21 +10,24 @@ import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
 import org.bukkit.event.server.PluginDisableEvent;
 import org.bukkit.event.world.WorldSaveEvent;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Type;
+import java.time.Duration;
+import java.time.Instant;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
-public class JoinCommand extends SubCommand {
+public class JoinCommand extends SubCommand implements Listener {
     private static final ObjectMapper mapper = new ObjectMapper();
+    private static Instant lastSave = Instant.EPOCH;
     private HashMap<UUID, Long> lastJoin = new HashMap<>();
-    private File saveFile = new File(ReligionLab.get().getDataFolder(), "lastjoin.json");
-    private boolean oneJoinPerDay;
+    private final File saveFile = new File(ReligionLab.get().getDataFolder(), "lastjoin.json");
+    private final boolean oneJoinPerDay;
 
     private void save() throws IOException {
         saveFile.createNewFile();
@@ -40,16 +43,12 @@ public class JoinCommand extends SubCommand {
         oneJoinPerDay = ReligionLab.get().getConfig().getBoolean("one join per day", true);
         try {
             saveFile.createNewFile();
-            lastJoin = mapper.readValue(saveFile, new TypeReference<>() {
-                @Override
-                public Type getType() {
-                    return super.getType();
-                }
-            });
+            lastJoin = mapper.readValue(saveFile, new TypeReference<>() {});
         } catch (JsonParseException | JsonMappingException ignored) {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        ReligionLab.get().getServer().getPluginManager().registerEvents(this, ReligionLab.get());
     }
 
     @Override
@@ -100,6 +99,10 @@ public class JoinCommand extends SubCommand {
 
     @EventHandler
     public void onWorldSave(WorldSaveEvent ev) {
+        // Don't save more than once every 10 seconds
+        if(Duration.between(lastSave, Instant.now()).toSeconds() < 10000) return;
+        lastSave = Instant.now();
+
         try {
             save();
         } catch (IOException e) {

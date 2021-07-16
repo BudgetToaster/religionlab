@@ -4,13 +4,14 @@ import com.github.budgettoaster.religionlab.perks.Perks;
 import com.github.budgettoaster.religionlab.commands.ReligionBaseCommand;
 import com.github.budgettoaster.religionlab.commands.ReligionLabTabCompleter;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
 import org.bukkit.event.world.WorldSaveEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.IOException;
 import java.util.Objects;
 
-public final class ReligionLab extends JavaPlugin {
+public final class ReligionLab extends JavaPlugin implements Listener {
     private static ReligionLab instance;
     public static ReligionLab get() { return instance; }
 
@@ -26,7 +27,7 @@ public final class ReligionLab extends JavaPlugin {
         Objects.requireNonNull(this.getCommand("religion")).setExecutor(baseCommand);
         Objects.requireNonNull(this.getCommand("religion")).setTabCompleter(new ReligionLabTabCompleter());
 
-        if(!Perks.init()) return;
+        Perks.init();
 
         ancientTextGenerator = new AncientTextGenerator();
         if(!ancientTextGenerator.init()) return;
@@ -38,6 +39,8 @@ public final class ReligionLab extends JavaPlugin {
             getServer().shutdown();
             return;
         }
+
+        getServer().getPluginManager().registerEvents(this, this);
 
         getLogger().info("ReligionLab loaded.");
     }

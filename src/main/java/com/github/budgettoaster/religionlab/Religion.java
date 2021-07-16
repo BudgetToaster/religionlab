@@ -12,10 +12,14 @@ import org.bukkit.OfflinePlayer;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.Duration;
+import java.time.Instant;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Religion {
     private static final ObjectMapper mapper = new ObjectMapper();
+    private static Instant lastSave = Instant.EPOCH;
     private static final HashSet<Religion> religions = new HashSet<>();
     private static final HashMap<UUID, Religion> religionFollowers = new HashMap<>();
     private static final HashMap<Religion, Integer> numFollowers = new HashMap<>();
@@ -42,6 +46,9 @@ public class Religion {
     }
 
     public static void save() throws IOException {
+        if(Duration.between(lastSave, Instant.now()).toSeconds() < 10) return;
+        lastSave = Instant.now();
+
         File f = new File(ReligionLab.get().getDataFolder(), "religions.json");
         ArrayNode root = mapper.createArrayNode();
         for(Religion r : religions) {
@@ -135,6 +142,10 @@ public class Religion {
 
     public OfflinePlayer getFounder() {
         return founder;
+    }
+
+    public Iterable<UUID> getFollowers() {
+        return religionFollowers.keySet().stream().filter(uid -> religionFollowers.get(uid) == this).collect(Collectors.toList());
     }
 
     public void register() {

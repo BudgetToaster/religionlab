@@ -50,6 +50,11 @@ public class CreateCommand extends SubCommand {
             return true;
         }
 
+        for(Religion r : Religion.getReligions()) {
+            if(r.getFounder().equals(sender))
+                sender.sendMessage(ChatColor.RED + "You can only be the founder of one religion.");
+        }
+
         if(args.size() < 2)
             return false;
 

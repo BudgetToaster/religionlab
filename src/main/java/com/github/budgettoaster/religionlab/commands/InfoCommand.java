@@ -34,19 +34,7 @@ public class InfoCommand extends SubCommand {
             return true;
         }
 
-        StringBuilder str = new StringBuilder();
-        str.append(MessageFormat.format("{0}--------- {1}{2} {3}---------", ChatColor.YELLOW, ChatColor.RESET, religion.getName(), ChatColor.YELLOW))
-                .append(MessageFormat.format("\n{0}Founder: {1}{2}", ChatColor.GOLD, ChatColor.RESET, religion.getFounder().getName()))
-                .append(MessageFormat.format("\n{0}Founder Perk: {1}{2}", ChatColor.GOLD, ChatColor.RESET, religion.getFounderPerk().getInGameName(PerkType.FOUNDER)))
-                .append(MessageFormat.format("\n{0}Follower Perks:", ChatColor.GOLD));
-        if(religion.getFollowerPerks().isEmpty()) {
-            str.append(ChatColor.RESET).append(" None");
-        }
-        else {
-            for(Perk perk : religion.getFollowerPerks())
-                str.append(MessageFormat.format("\n - {0}", perk.getInGameName(PerkType.FOLLOWER)));
-        }
-        sender.sendMessage(str.toString().split("\n"));
+        sendInfo(sender, religion);
         return true;
     }
 
@@ -67,6 +55,11 @@ public class InfoCommand extends SubCommand {
             return true;
         }
 
+        sendInfo(sender, religion);
+        return true;
+    }
+
+    private void sendInfo(CommandSender sender, Religion religion) {
         StringBuilder str = new StringBuilder();
         str.append(MessageFormat.format("{0}--------- {1}{2} {3}---------", ChatColor.YELLOW, ChatColor.RESET, religion.getName(), ChatColor.YELLOW))
                 .append(MessageFormat.format("\n{0}Founder: {1}{2}", ChatColor.GOLD, ChatColor.RESET, religion.getFounder().getName()))
@@ -80,6 +73,5 @@ public class InfoCommand extends SubCommand {
                 str.append(MessageFormat.format("\n - {0}", perk.getInGameName(PerkType.FOLLOWER)));
         }
         sender.sendMessage(str.toString().split("\n"));
-        return true;
     }
 }

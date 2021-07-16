@@ -19,7 +19,7 @@ public class Perks {
     public static final List<FounderPerk> founder = new ArrayList<>();
     public static final List<FollowerPerk> follower = new ArrayList<>();
 
-    public static boolean init() {
+    public static void init() {
         fortune = new FortunePerk();
         strength = new StrengthPerk();
         precision = new PrecisionPerk();
@@ -41,7 +41,6 @@ public class Perks {
 
         for(Perk p : all)
             ReligionLab.get().getServer().getPluginManager().registerEvents(p, ReligionLab.get());
-        return true;
     }
 
     public static Perk getPerk(String name) {

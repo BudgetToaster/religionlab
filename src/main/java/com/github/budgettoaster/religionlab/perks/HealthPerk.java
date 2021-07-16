@@ -52,4 +52,4 @@ public class HealthPerk extends SimplePerk {
     public String getDescription() {
         return "Increases max health.";
     }
-};
+}

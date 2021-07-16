@@ -27,8 +27,12 @@ permissions:
     default: op
     children:
       - religionlab.admin.createtext
+      - religionlab.admin.delete
   religionlab.admin.createtext:
     description: Allows a player to create an ancient text
+    default: op
+  religionlab.admin.delete:
+    description: Allows a player to delete a religion.
     default: op
   religionlab.basic.*:
     description: Access to all basic (non-admin) commands.

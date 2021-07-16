@@ -28,6 +28,7 @@ public class ReligionBaseCommand implements CommandExecutor {
         subCommands.add(new JoinCommand());
         subCommands.add(new LeaveCommand());
         subCommands.add(new ListCommand());
+        subCommands.add(new DeleteCommand());
     }
 
     public void init() {

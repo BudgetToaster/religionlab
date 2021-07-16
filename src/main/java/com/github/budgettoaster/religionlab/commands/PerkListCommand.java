@@ -1,13 +1,12 @@
 package com.github.budgettoaster.religionlab.commands;
 
+import com.github.budgettoaster.religionlab.perks.PerkType;
 import com.github.budgettoaster.religionlab.perks.Perks;
 import com.github.budgettoaster.religionlab.perks.base.Perk;
-import com.github.budgettoaster.religionlab.perks.PerkType;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 
 import java.text.MessageFormat;
-import java.util.Collections;
 import java.util.List;
 
 public class PerkListCommand extends SubCommand {
@@ -33,7 +32,7 @@ public class PerkListCommand extends SubCommand {
                     ChatColor.YELLOW, ChatColor.RESET, ChatColor.YELLOW));
             int id = 1;
             for(Perk perk : Perks.founder)
-                str.append(MessageFormat.format("\n{0}{1} ({2}): {3}{4}",
+                str.append(MessageFormat.format("\n{0}{1} (ID {2}): {3}{4}",
                         ChatColor.GOLD, perk.getInGameName(PerkType.FOUNDER), id++, ChatColor.RESET, perk.getDescription()));
             sender.sendMessage(str.toString());
             return true;
@@ -43,7 +42,7 @@ public class PerkListCommand extends SubCommand {
                     ChatColor.YELLOW, ChatColor.RESET, ChatColor.YELLOW));
             int id = 1;
             for(Perk perk : Perks.follower)
-                str.append(MessageFormat.format("\n{0}{1} ({2}): {3}{4}",
+                str.append(MessageFormat.format("\n{0}{1} (ID {2}): {3}{4}",
                         ChatColor.GOLD, perk.getInGameName(PerkType.FOLLOWER), id++, ChatColor.RESET, perk.getDescription()));
             sender.sendMessage(str.toString());
             return true;

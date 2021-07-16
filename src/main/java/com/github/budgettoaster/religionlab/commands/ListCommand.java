@@ -1,11 +1,8 @@
 package com.github.budgettoaster.religionlab.commands;
 
 import com.github.budgettoaster.religionlab.Religion;
-import com.github.budgettoaster.religionlab.ReligionLab;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.server.PluginDisableEvent;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;

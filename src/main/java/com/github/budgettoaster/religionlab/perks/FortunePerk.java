@@ -85,4 +85,4 @@ public class FortunePerk extends SimplePerk {
     public String getDescription() {
         return "Small chance to get one extra ore when mining.";
     }
-};
+}
