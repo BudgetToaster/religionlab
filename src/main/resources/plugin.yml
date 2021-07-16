@@ -1,5 +1,5 @@
 name: ReligionLab
-version: 1.0-SNAPSHOT
+version: 1.0
 main: com.github.budgettoaster.religionlab.ReligionLab
 api-version: 1.17
 authors: [BudgetToaster]
