@@ -16,7 +16,7 @@ public class PerkListCommand extends SubCommand {
                 false,
                 "perks",
                 "/religion perks [founder|follower]",
-                "religion.basic.perks",
+                "religionlab.basic.perks",
                 "Shows the sender a list of perks.",
                 List.of("beliefs")
         );

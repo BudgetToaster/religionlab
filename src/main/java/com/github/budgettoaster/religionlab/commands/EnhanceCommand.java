@@ -20,7 +20,7 @@ public class EnhanceCommand extends SubCommand {
                 true,
                 "enhance",
                 "/religion enhance [Follower Perk ID]",
-                "religion.basic.enhance",
+                "religionlab.basic.enhance",
                 "Adds a follower perk to your religion."
         );
     }

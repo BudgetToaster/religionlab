@@ -12,7 +12,7 @@ public class CreateTextCommand extends SubCommand {
                 true,
                 "createtext",
                 "/religion createtext",
-                "religion.admin.createtext",
+                "religionlab.admin.createtext",
                 "Creates an ancient text for the sender."
         );
     }

@@ -23,7 +23,7 @@ public class CreateCommand extends SubCommand {
                 true,
                 "create",
                 "/religion create [Founder Perk ID] [Name]",
-                "religion.basic.create",
+                "religionlab.basic.create",
                 "Creates a religion."
         );
     }

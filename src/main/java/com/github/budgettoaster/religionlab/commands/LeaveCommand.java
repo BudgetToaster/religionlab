@@ -17,7 +17,7 @@ public class LeaveCommand extends SubCommand {
         super(true,
                 "leave",
                 "/religion leave",
-                "religion.basic.leave",
+                "religionlab.basic.leave",
                 "Leave a religion.");
         founderCanLeave = ReligionLab.get().getConfig().getBoolean("founder can leave", false);
     }

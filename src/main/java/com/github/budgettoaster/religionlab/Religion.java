@@ -17,14 +17,14 @@ import java.util.*;
 public class Religion {
     private static final ObjectMapper mapper = new ObjectMapper();
     private static final HashSet<Religion> religions = new HashSet<>();
-    private static final HashMap<OfflinePlayer, Religion> religionFollowers = new HashMap<>();
+    private static final HashMap<UUID, Religion> religionFollowers = new HashMap<>();
     private static final HashMap<Religion, Integer> numFollowers = new HashMap<>();
 
     public static void setReligion(OfflinePlayer player, Religion religion) {
-        Religion oldReligion = religionFollowers.get(player);
+        Religion oldReligion = religionFollowers.get(player.getUniqueId());
 
-        if(religion == null) religionFollowers.remove(player);
-        else religionFollowers.put(player, religion);
+        if(religion == null) religionFollowers.remove(player.getUniqueId());
+        else religionFollowers.put(player.getUniqueId(), religion);
 
         if(oldReligion != null)
             numFollowers.put(oldReligion, oldReligion.getNumFollowers() - 1);
@@ -34,7 +34,7 @@ public class Religion {
     }
 
     public static Religion getReligion(OfflinePlayer player) {
-        return religionFollowers.get(player);
+        return religionFollowers.get(player.getUniqueId());
     }
 
     public static Iterable<Religion> getReligions() {
@@ -54,9 +54,9 @@ public class Religion {
             node.set("followerPerks", followerPerksNode);
             node.put("founderPerk", r.founderPerk.toString());
             ArrayNode followersNode = mapper.createArrayNode();
-            for(Map.Entry<OfflinePlayer, Religion> entry : religionFollowers.entrySet()) {
+            for(Map.Entry<UUID, Religion> entry : religionFollowers.entrySet()) {
                 if(entry.getValue() == r)
-                    followersNode.add(entry.getKey().getUniqueId().toString());
+                    followersNode.add(entry.getKey().toString());
             }
             node.set("followers", followersNode);
             root.add(node);
@@ -91,11 +91,11 @@ public class Religion {
 
             for(JsonNode playerNode : religionNode.get("followers")) {
                 OfflinePlayer player = ReligionLab.get().getServer().getOfflinePlayer(UUID.fromString(playerNode.asText()));
-                religionFollowers.put(player, r);
+                religionFollowers.put(player.getUniqueId(), r);
             }
         }
 
-        for(Map.Entry<OfflinePlayer, Religion> entry : religionFollowers.entrySet()) {
+        for(Map.Entry<UUID, Religion> entry : religionFollowers.entrySet()) {
             if(!numFollowers.containsKey(entry.getValue()))
                 numFollowers.put(entry.getValue(), 0);
             numFollowers.put(entry.getValue(), numFollowers.get(entry.getValue()) + 1);
@@ -144,12 +144,12 @@ public class Religion {
     public void unregister() {
         religions.remove(this);
         numFollowers.remove(this);
-        ArrayList<OfflinePlayer> toRemove = new ArrayList<>();
-        for(Map.Entry<OfflinePlayer, Religion> entry : religionFollowers.entrySet()) {
+        ArrayList<UUID> toRemove = new ArrayList<>();
+        for(Map.Entry<UUID, Religion> entry : religionFollowers.entrySet()) {
             if(entry.getValue() == this)
                 toRemove.add(entry.getKey());
         }
-        for(OfflinePlayer p : toRemove)
+        for(UUID p : toRemove)
             religionFollowers.remove(p);
     }
 

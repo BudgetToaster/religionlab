@@ -17,7 +17,7 @@ public class ListCommand extends SubCommand {
         super(true,
                 "list",
                 "/religion list (page)",
-                "religion.basic.list",
+                "religionlab.basic.list",
                 "List religions by popularity.");
     }
 

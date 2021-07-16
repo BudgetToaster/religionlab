@@ -15,7 +15,7 @@ public class InfoCommand extends SubCommand {
         super(true,
                 "info",
                 "/religion info (Name)",
-                "religion.basic.info",
+                "religionlab.basic.info",
                 "Shows the sender basic religion information.");
     }
 

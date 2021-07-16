@@ -55,6 +55,7 @@ public class FortunePerk extends SimplePerk {
             drop = Material.QUARTZ;
 
         Religion religion = Religion.getReligion(ev.getPlayer());
+        if(religion == null) return;
         BigDecimal numFollowers = BigDecimal.valueOf(religion.getNumFollowers());
 
         if(isFounderEnabled() && getFounderExpression() != null &&

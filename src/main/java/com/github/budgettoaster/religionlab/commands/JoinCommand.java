@@ -18,10 +18,11 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 
 public class JoinCommand extends SubCommand {
     private static final ObjectMapper mapper = new ObjectMapper();
-    private HashMap<String, Long> lastJoin = new HashMap<>();
+    private HashMap<UUID, Long> lastJoin = new HashMap<>();
     private File saveFile = new File(ReligionLab.get().getDataFolder(), "lastjoin.json");
     private boolean oneJoinPerDay;
 
@@ -34,7 +35,7 @@ public class JoinCommand extends SubCommand {
         super(true,
                 "join",
                 "/religion join [Name]",
-                "religion.basic.join",
+                "religionlab.basic.join",
                 "Join a religion.");
         oneJoinPerDay = ReligionLab.get().getConfig().getBoolean("one join per day", true);
         try {
@@ -63,12 +64,12 @@ public class JoinCommand extends SubCommand {
                 break;
             }
 
-        String uuid = ((OfflinePlayer) sender).getUniqueId().toString();
+        UUID uuid = ((OfflinePlayer) sender).getUniqueId();
         if(lastJoin.containsKey(uuid)) {
             if(System.currentTimeMillis() - lastJoin.get(uuid) < 86400000) {
                 if(oneJoinPerDay) {
                     sender.sendMessage(ChatColor.RED + "You can only join a religion once per day.");
-                    return true;
+                    //return true;
                 }
             }
             else {
@@ -87,7 +88,7 @@ public class JoinCommand extends SubCommand {
         }
 
         Religion.setReligion(((OfflinePlayer) sender), religion);
-        lastJoin.put(uuid, System.currentTimeMillis() / 1000);
+        lastJoin.put(uuid, System.currentTimeMillis());
         try {
             this.save();
         } catch (IOException e) {
