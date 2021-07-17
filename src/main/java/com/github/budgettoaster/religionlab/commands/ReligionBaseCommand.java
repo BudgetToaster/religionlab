@@ -9,6 +9,7 @@ import org.bukkit.entity.Player;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class ReligionBaseCommand implements CommandExecutor {
@@ -40,9 +41,12 @@ public class ReligionBaseCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         String secondaryCommand;
-        if(args.length > 0) secondaryCommand = args[0].toLowerCase();
+        List<String> otherArgs = Collections.emptyList();
+        if(args.length > 0) {
+            secondaryCommand = args[0].toLowerCase();
+            Arrays.asList(args).subList(1, args.length);
+        }
         else secondaryCommand = "help";
-        List<String> otherArgs = Arrays.asList(args).subList(1, args.length);
 
         for(SubCommand subCommand : subCommands) {
             if(!secondaryCommand.equals(subCommand.getLabel()) && !subCommand.getAliases().contains(secondaryCommand))
