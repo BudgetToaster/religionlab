@@ -44,7 +44,7 @@ public class ReligionBaseCommand implements CommandExecutor {
         List<String> otherArgs = Collections.emptyList();
         if(args.length > 0) {
             secondaryCommand = args[0].toLowerCase();
-            Arrays.asList(args).subList(1, args.length);
+            otherArgs = Arrays.asList(args).subList(1, args.length);
         }
         else secondaryCommand = "help";
 
