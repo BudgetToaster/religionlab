@@ -1,12 +1,10 @@
-import org.apache.tools.ant.filters.ReplaceTokens
-
 plugins {
     id 'com.github.johnrengelman.shadow' version '7.0.0'
     id 'java'
 }
 
 group = 'com.github.budgettoaster.religionlab'
-version = '1.0.1'
+version = '1.0.2'
 
 sourceCompatibility = "1.9"
 targetCompatibility = "1.9"
