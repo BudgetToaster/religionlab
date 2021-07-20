@@ -64,7 +64,7 @@ public class CreateCommand extends SubCommand {
             int perkIdx = Integer.parseInt(args.get(0));
             perk = Perks.founder.get(perkIdx - 1);
         }
-        catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
+        catch (NumberFormatException | IndexOutOfBoundsException e) {
             sender.sendMessage(ChatColor.RED + "Invalid founder perk id. For a list of perks use /religion perks founder.");
             return true;
         }
